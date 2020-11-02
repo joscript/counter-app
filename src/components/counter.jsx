@@ -30,7 +30,7 @@ class Counter extends Component {
                     {this.state.tags.map(tag => <li key={tag}>{tag}</li>)}
                 </ul> */}
                 <button onClick={this.handleDecrement} className="btn btn-dark btn-sm m-2">Decrement</button>
-                <button onClick={this.handleDelete} className="btn btn-danger btn-sm m-2">Delete</button>
+                <button onClick={this.props.onDelete} className="btn btn-danger btn-sm m-2">Delete</button>
             </div>
         );
     };
