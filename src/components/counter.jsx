@@ -10,6 +10,18 @@ class Counter extends Component {
         fontWeight: 'bold'
     }
 
+    componentDidUpdate(prevProps, prevState){
+        console.log(prevProps);
+        console.log(prevState);
+        // if(prevProps.counter.value !== this.props.counter.value){
+        //     // do ajax or api call over here 
+        // }
+    }
+
+    componentWillUnmount(){
+        console.log('Counter - unmount');
+    }
+
     render() { 
         return (
             <div>
