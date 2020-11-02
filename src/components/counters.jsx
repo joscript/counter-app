@@ -17,15 +17,52 @@ class Counters extends Component {
         this.setState({counters});
     }
 
+    handleReset = () => {
+        const counters = this.state.counters.map(counter => {
+            counter.value = 0;
+            return counter;
+        })
+
+        this.setState({counters})
+    }
+
+    handleIncrement = (data) => {
+        // console.log(data)
+        const counters = [...this.state.counters]; // used spread operator to clone 
+        const index = counters.indexOf(data);
+        counters[index] = {...data}; // to refer only to the object given and not to the local state (kase naa-update nya pala)
+        counters[index].value++;
+        // console.log(this.state.counters[index].value)
+
+        this.setState({counters});
+    }
+
+    handleDecrement = (data) => {
+        const counters = [...this.state.counters]; // used spread operator to clone 
+        const index = counters.indexOf(data);
+        counters[index] = {...data}; // to refer only to the object given and not to the local state (kase naa-update nya pala)
+        counters[index].value--;
+
+        this.setState({counters});
+    }
+
     render() { 
         return ( 
-            <div className="mt-5">
+            <div className="mt-5 container">
+                <button 
+                    className="btn btn-info btn-sm m-2"
+                    onClick={this.handleReset}
+                >
+                    Reset
+                </button>
                 { 
                     this.state.counters.map( 
                         counter => <Counter 
                                         onDelete={this.handleDelete} 
                                         key={counter.id} 
                                         counter={counter}
+                                        onIncrement={this.handleIncrement}
+                                        onDecrement={this.handleDecrement}
                                     /> 
                     )   
                 }
