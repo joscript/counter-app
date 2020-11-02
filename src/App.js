@@ -13,6 +13,21 @@ class App extends Component {
         ]
     };
 
+    // LIFECYCLE HOOKS
+    // called only once and a good place to initialize states properties
+    constructor(props) {
+      super(props);
+      console.log('App - Constructor', this.props);
+    }
+
+    // called after the component is rendered to the DOM, good place to make ajax or api requests and get data from server
+    componentDidMount() {
+      // item api
+      // this.setState({items})
+      console.log('App - Mounted');
+    } 
+    // END OF LIFECYCLE HOOKS
+
     handleDelete = (counterId) => {
         // console.log('Event handle called', counterId);
         const counters = this.state.counters.filter(counter => counter.id !== counterId);
@@ -49,6 +64,7 @@ class App extends Component {
     }
   
     render() {
+      console.log('App - rendered')
       return (
         <div className="App">
           <Navbar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
